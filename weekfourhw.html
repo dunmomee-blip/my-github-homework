@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Patrick+Hand&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>My weather application</title>
+
+    <style>
+      body {
+        background-color: rgb(249, 247, 254);
+        font-family: "Patrick Hand", cursive;
+        font-size: 20px;
+        font-style: normal;
+      }
+      .main-body {
+        border: 1px solid white;
+        background-color: white;
+        width: 600px;
+        padding: 30px;
+        margin: 400px;
+        margin-top: 60px;
+        border-radius: 10px;
+      }
+
+      h1 {
+        font-size: 50px;
+      }
+
+      main p {
+        opacity: 0.6;
+        font-weight: lighter;
+      }
+      .degree {
+        position: relative;
+        bottom: 30px;
+        font-weight: lighter;
+        font-size: 30px;
+      }
+      strong {
+        color: red;
+        font-weight: bold;
+      }
+
+      .form-enter,
+      .form-search {
+        border-radius: 4px;
+        border: 1px solid rgb(249, 247, 254);
+        height: 50px;
+        font-size: 20px;
+      }
+
+      .form-enter {
+        width: 500px;
+        background-color: rgb(249, 247, 254);
+        padding: 20px;
+      }
+      .form-search {
+        width: 80px;
+        background-color: blueviolet;
+        color: white;
+        font-size: 15px;
+      }
+      .current-weather {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 20px;
+        border: 1px solid rgb(249, 247, 254);
+        margin-top: 30px;
+        border-left-style: none;
+        border-right-style: none;
+      }
+      .current-temp {
+        padding-top: 40px;
+        font-size: 60px;
+      }
+      footer {
+        opacity: 0.6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-body">
+      <header>
+        <form id="city">
+          <input
+            type="search"
+            placeholder="Enter a city.."
+            required
+            class="form-enter"
+          />
+
+          <input type="submit" value="Search" class="form-search" />
+        </form>
+      </header>
+      <main>
+        <div class="current-weather">
+          <div>
+            <h1>Paris</h1>
+            <p>
+              <span id="time">Saturday 15:32</span>, moderate rain <br />
+              Humidity: <strong>87%</strong>, Wind: <strong>7.2km/h</strong>
+            </p>
+          </div>
+          <div class="current-temp">☀️ 14<span class="degree">°C</span></div>
+        </div>
+      </main>
+      <footer>
+        <p>
+          This project was coded by
+          <a href="#" target="_blank">Tijani Rafiat</a> and is
+          <a href="#" target="_blank"> on GitHub</a> and
+          <a href="#" target="_blank">hosted on Netlify</a>
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      let currentTime = new Date();
+      let hours = currentTime.getHours();
+      let minutes = currentTime.getMinutes();
+      let Day = days[currentTime.getDay()];
+
+      let timeElement = document.querySelector("#time");
+      timeElement.innerHTML = `${Day}, ${hours}:${minutes}`;
+
+      function sayCity() {
+        event.preventDefault();
+        let cityInput = document.querySelector(".form-enter");
+        let cityName = cityInput.value;
+        let cityDisplay = document.querySelector("h1");
+        cityDisplay.innerHTML = cityName;
+      }
+
+      let cityForm = document.querySelector("#city");
+      cityForm.addEventListener("submit", sayCity);
+    </script>
+  </body>
+</html>
